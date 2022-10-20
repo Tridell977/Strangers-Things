@@ -1,0 +1,22 @@
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+#NavBar {
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+}
+.NavLink {
+    
+}
+.allPosts .singlePost {
+    border: 1px solid black;
+}
+#registerForm {
+    display: flex;
+    flex-direction: column;
+
+}

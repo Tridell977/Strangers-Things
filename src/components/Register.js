@@ -1,20 +1,23 @@
 import {React, useEffect} from "react";
-import { fetchAPI } from "../api/api";
-
-const Register = ({setRegistering}) => {
-        useEffect(() => {fetchAPI("users/register").then((result) => {
-            console.log(result);
-        })}, []);
+import { fetchAPI, registerUser } from "../api/api";
+const Register = ({username, setUsername, password, setPassword, setRegistering, checkPassword, setCheckPassword}) => {
+    
         return (
+            <div className="formContainer">
+                <h3>Please Register with an Username and Password</h3>
         <form id="registerForm" onSubmit={(event) => {
             event.preventDefault();
-            setRegistering(false);
+            password === checkPassword ? registerUser(username, password, "register") : console.log('nope');
+            setPassword("");
+            setUsername("");
+            setCheckPassword("");
         }}>
-            <input type="text" required placeholder="Username"/>
-            <input type="password" minLength="8" required placeholder="Password"/>
-            <input type="password" minLength="8" required placeholder="Password Check"/>
+            <input type="text" required placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)}/>
+            <input type="password" minLength="8" required placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)}/>
+            <input type="password" minLength="8" required placeholder="Password Check" value={checkPassword} onChange={(event) => setCheckPassword(event.target.value)}/>
             <button type="submit">Register</button>
         </form>
+        </div>
     )
 }
 

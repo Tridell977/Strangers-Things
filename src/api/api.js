@@ -5,3 +5,22 @@ export async function fetchAPI(path) {
     const data =  await response.json();
     return data;
 }
+export async function registerUser(username, password, call) {
+    try {const response = await fetch(`${BASE_URL}/users/${call}`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user: {
+                username,
+                password
+            }
+        })
+    })
+    const result = await response.json();
+    return result;
+} catch(error) {
+        console.error(error)
+    }
+}

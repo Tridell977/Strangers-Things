@@ -12,9 +12,9 @@ const Register = ({username, setUsername, password, setPassword, setRegistering,
             setUsername("");
             setCheckPassword("");
         }}>
-            <input type="text" required placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)}/>
-            <input type="password" minLength="8" required placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)}/>
-            <input type="password" minLength="8" required placeholder="Password Check" value={checkPassword} onChange={(event) => setCheckPassword(event.target.value)}/>
+            <input className="textInput" type="text" required placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)}/>
+            <input className="textInput" type="password" minLength="8" required placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)}/>
+            <input className="textInput" type="password" minLength="8" required placeholder="Password Check" value={checkPassword} onChange={(event) => setCheckPassword(event.target.value)}/>
             <button type="submit">Register</button>
         </form>
         </div>

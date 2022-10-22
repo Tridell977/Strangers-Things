@@ -17,8 +17,8 @@ const Login = ({username, setUsername, password, setPassword, setToken, setLogge
         <div className="formContainer">
         <h3>Please Enter your Username and Password</h3>
         <form id="login" onSubmit={handleLogin}>
-            <input id="username" type="text" placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)}/>
-            <input id="password" type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)}/>
+            <input className="textInput" id="username" type="text" placeholder="Username" value={username} onChange={(event) => setUsername(event.target.value)}/>
+            <input className="textInput" id="password" type="password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)}/>
             <button type="submit">Submit</button>
             {<button onClick={() => navigate('/register')}>Register</button> }
         </form>

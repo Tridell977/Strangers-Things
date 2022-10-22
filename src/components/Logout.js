@@ -7,7 +7,7 @@ const Logout = ({setToken}) => {
         <button onClick={() => {
         setToken("");
         localStorage.removeItem('token');
-        navigate("/login")
+        // navigate("/login")
         }}>Logout
         </button>
     )

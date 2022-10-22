@@ -24,3 +24,27 @@ export async function registerUser(username, password, call) {
         console.error(error)
     }
 }
+export async function createPost(title, description, price, location, willDeliver, token) {
+    try {const response = await fetch(`${BASE_URL}/posts`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            post: {
+                title,
+                description,
+                price,
+                location,
+                willDeliver
+            }
+        })
+    })
+    const result = await response.json();
+    console.log(result);
+    return result;
+    } catch(error){
+        console.error(error);
+    }
+}

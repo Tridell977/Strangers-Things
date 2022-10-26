@@ -48,3 +48,53 @@ export async function createPost(title, description, price, location, willDelive
         console.error(error);
     }
 }
+export const deletePost = async (postIdToDelete, token, posts, setPosts) => {
+    try {
+        const response = await fetch(`${BASE_URL}/posts/${postIdToDelete}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    const newPosts = posts.filter((post) => post._id !== postIdToDelete)
+    setPosts(newPosts)
+} catch(error){
+    console.error(error);
+}
+}
+
+export const callMe = async (token) => {
+    try {
+        const response = await fetch(`${BASE_URL}/users/me`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        const result = await response.json()
+        return result;
+    } catch(error) {
+        console.error(error)
+    }
+}
+export const messageAuthor = async (token, postID, messages) => {
+    try {
+        const response = await fetch(`${BASE_URL}/posts/${postID}/messages`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                message: {
+                    content: `${messages}`
+                }
+            })
+        })
+        const result = await response.json();
+        console.log(result)
+    } catch(error){
+        console.error(error)
+    }
+}

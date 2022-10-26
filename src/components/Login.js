@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from "react";
+import { React } from "react";
 import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,7 @@ const Login = ({username, setUsername, password, setPassword, setToken, setLogge
         const data = await registerUser(username, password, "login")
         setToken(data.data.token)
         localStorage.setItem("token", data.data.token)
+        navigate("/")
         setPassword("");
         setUsername("");
     }

@@ -1,13 +1,15 @@
-import {React, useEffect} from "react";
-import { fetchAPI, registerUser } from "../api/api";
+import { React } from "react";
+import { registerUser } from "../api/api";
+import { useNavigate } from "react-router-dom";
 const Register = ({username, setUsername, password, setPassword, setRegistering, checkPassword, setCheckPassword}) => {
-    
+        let navigate = useNavigate();
         return (
             <div className="formContainer">
                 <h3>Please Register with an Username and Password</h3>
         <form id="registerForm" onSubmit={(event) => {
             event.preventDefault();
             password === checkPassword ? registerUser(username, password, "register") : console.log('nope');
+            navigate('/login')
             setPassword("");
             setUsername("");
             setCheckPassword("");

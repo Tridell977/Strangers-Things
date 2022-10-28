@@ -1,5 +1,12 @@
 import { createPost } from "../api/api"
-const AddNewPost = ({token, title, setTitle, description, setDescription, price, setPrice, location, setLocation, willDeliver, setWillDeliver, setPosts, posts}) => {
+import { useState } from "react";
+const AddNewPost = ({token, setPosts, posts}) => {
+    const [title, setTitle] = useState('');
+    const [description, setDescription ] = useState('');
+    const [price, setPrice] = useState('');
+    const [location, setLocation] = useState('');
+    const [willDeliver, setWillDeliver] = useState(false);
+    
     return (
         <>
         {token ?

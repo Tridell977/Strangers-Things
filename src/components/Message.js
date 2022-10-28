@@ -1,6 +1,8 @@
 import { messageAuthor } from "../api/api"
+import { useState } from "react";
 
-const Message = ({messages, setMessages, token, postID}) => {
+const Message = ({token, postID}) => {
+    const [messages, setMessages] = useState('');
     const submitHandler = (event) => {
         event.preventDefault();
         messageAuthor(token, postID, messages);

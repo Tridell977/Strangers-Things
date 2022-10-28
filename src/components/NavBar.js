@@ -7,9 +7,9 @@ const NavBar = ({loggedIn, registered, setToken, setLoggedIn, token}) => {
         <header id="header">
         <h1>Stranger's Things</h1>
         <nav id="NavBar">
-            <NavLink className="NavLink" to="/">Home</NavLink>
+            {token ? <NavLink className="NavLink" to="/">Home</NavLink> : null }
             <NavLink className="NavLink" to="/posts">Posts</NavLink>
-            <NavLink className="NavLink" to="/profile">Profile</NavLink>
+            {token ? <NavLink className="NavLink" to="/profile">Profile</NavLink> : null}
             {token ? <Logout setToken={setToken}/> : <NavLink className="NavLink" to="/login">Login</NavLink>}
             {token ? null : <NavLink className="NavLink" to="/register">Register</NavLink>}
         </nav>

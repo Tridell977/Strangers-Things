@@ -1,14 +1,17 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Logout = ({setToken}) => {
     const navigate = useNavigate()
     return (
-        <button onClick={() => {
+        <button 
+        id="logoutButton"
+        onClick={() => {
         setToken("");
         localStorage.removeItem('token');
         navigate("/posts")
-        }}>Logout
+        }}
+        >Logout
         </button>
     )
 }

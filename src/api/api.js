@@ -1,6 +1,7 @@
 const BASE_URL = "https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT";
 
 export async function fetchAPI(path, token) {
+    try{
     const response = await fetch(`${BASE_URL}/${path}`, {
         method: "GET",
         headers: {
@@ -9,8 +10,10 @@ export async function fetchAPI(path, token) {
         }
     })
     const data =  await response.json();
-    console.log(data)
     return data;
+} catch(error){
+    console.error(error)
+}
 }
 export async function registerUser(username, password, call) {
     try {const response = await fetch(`${BASE_URL}/users/${call}`, {
@@ -49,7 +52,6 @@ export async function createPost(title, description, price, location, willDelive
         })
     })
     const result = await response.json();
-    console.log(result);
     return result;
     } catch(error){
         console.error(error);
@@ -99,9 +101,31 @@ export const messageAuthor = async (token, postID, messages) => {
                 }
             })
         })
-        const result = await response.json();
-        console.log(result)
     } catch(error){
         console.error(error)
+    }
+}
+
+export async function editPost(title, description, price, location, willDeliver, postID, token) {
+    try {const response = await fetch(`${BASE_URL}/posts/${postID}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": 'application/json',
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            post: {
+                title,
+                description,
+                price,
+                location,
+                willDeliver
+            }
+        })
+    })
+    const result = await response.json();
+    return result;
+    } catch(error){
+        console.error(error);
     }
 }

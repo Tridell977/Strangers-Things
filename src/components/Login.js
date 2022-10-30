@@ -3,15 +3,18 @@ import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 
-const Login = ({username, setUsername, password, setPassword, setToken, setLoggedIn, token}) => {
+const Login = ({username, setUsername, password, setPassword, setToken}) => {
     const handleLogin = async (event) => {
         event.preventDefault();
-        const data = await registerUser(username, password, "login")
+       try{ const data = await registerUser(username, password, "login")
         setToken(data.data.token)
         localStorage.setItem("token", data.data.token)
         navigate("/")
         setPassword("");
         setUsername("");
+        } catch(error) {
+            alert("Username and Password did not match, please try again")
+        }
     }
     let navigate = useNavigate();
     return (

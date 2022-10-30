@@ -8,9 +8,6 @@ const App = () => {
     const [posts, setPosts] = useState([])
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('');
-    const [checkPassword, setCheckPassword] = useState('')
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [registered, setRegistering] = useState(false);
     const [token, setToken] = useState('');
     const [postId, setPostId] = useState('');
     const[me, setMe] = useState({})
@@ -28,12 +25,12 @@ const App = () => {
     return (
         <div id="app">
             <BrowserRouter>
-            <NavBar loggedIn={loggedIn} registered={registered} setLoggedIn={setLoggedIn} setToken={setToken} token={token}/>  
+            <NavBar setToken={setToken} token={token}/>  
             <Routes>
-            <Route path="/" element={<Home me={me} token={token} posts={posts} setPosts={setPosts} />}/>
-            <Route path="/register" element={<Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} setRegistering={setRegistering} checkPassword={checkPassword} setCheckPassword={setCheckPassword}/>}/>
-            <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} setLoggedIn={setLoggedIn} setToken={setToken} token={token}/>}/>
-            <Route path="/posts" element={<PostsTab posts={posts} token={token}  setPosts={setPosts} setPostId={setPostId} postId={postId}/>}/>
+            <Route path="/home" element={<Home me={me} token={token} posts={posts} setPosts={setPosts} />}/>
+            <Route path="/register" element={<Register username={username} setUsername={setUsername} password={password} setPassword={setPassword}/>}/>
+            <Route path="/login" element={<Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} setToken={setToken} token={token}/>}/>
+            <Route path="/" element={<PostsTab posts={posts} token={token}  setPosts={setPosts} setPostId={setPostId} postId={postId}/>}/>
             <Route path="/profile" element={<Profile me={me}/>}/>
             </Routes>
             </BrowserRouter>

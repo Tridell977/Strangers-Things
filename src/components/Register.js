@@ -1,15 +1,20 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
-const Register = ({username, setUsername, password, setPassword, setRegistering, checkPassword, setCheckPassword}) => {
+const Register = ({username, setUsername, password, setPassword}) => {
+        const [checkPassword, setCheckPassword] = useState('')
         let navigate = useNavigate();
         return (
             <div className="formContainer">
-                <h3>Please Register with an Username and Password</h3>
+                <h3 id="regMessage">Please Register with an Username and Password</h3>
         <form id="registerForm" onSubmit={(event) => {
             event.preventDefault();
-            password === checkPassword ? registerUser(username, password, "register") : console.log('nope');
+            if(password === checkPassword){
+            registerUser(username, password, "register")
             navigate('/login')
+            } else {
+                alert('Passwords did not match, please try again.')
+            }
             setPassword("");
             setUsername("");
             setCheckPassword("");
